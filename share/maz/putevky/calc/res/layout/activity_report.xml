@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/reportHeader"
+        android:text="Отчёт."
+        android:textSize="36sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/distanceHeader"
+        android:text="ПРОБЕГ"
+        android:textSize="26sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reportHeader"
+        android:background="#ffffff"
+        android:textColor="#006400"/>
+    <TextView
+        android:id="@+id/distanceByPinsk"
+        android:text="Пинск "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="26sp"
+        android:paddingTop="10dp"
+        android:paddingLeft="30dp"
+        android:layout_below="@id/distanceHeader"/>
+    <TextView
+        android:id="@+id/distanceByRout"
+        android:text="трасса "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="26sp"
+        android:paddingTop="10dp"
+        android:paddingLeft="30dp"
+        android:layout_below="@id/distanceByPinsk"/>
+    <TextView
+        android:id="@+id/distanceByCity"
+        android:text="City "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="26sp"
+        android:paddingTop="13dp"
+        android:paddingLeft="30dp"
+        android:layout_below="@id/distanceByRout"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/totalDistance"
+        android:text="Общий пробег "
+        android:textSize="26sp"
+        android:background="#00FF7F"
+        android:textColor="#006400"
+        android:layout_below="@id/distanceByCity"/>
+    <TextView
+        android:id="@+id/consumptionHeader"
+        android:text="РАСХОД"
+        android:textSize="26sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/totalDistance"
+        android:background="#ffffff"
+        android:textColor="#006400"/>
+    <TextView
+        android:id="@+id/consumptionPinsk"
+        android:text="Пинск "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="26sp"
+        android:paddingTop="10dp"
+        android:paddingLeft="30dp"
+        android:layout_below="@id/consumptionHeader"/>
+    <TextView
+        android:id="@+id/consumptionRout"
+        android:text="трасса "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="26sp"
+        android:paddingTop="10dp"
+        android:paddingLeft="30dp"
+        android:layout_below="@id/consumptionPinsk"/>
+    <TextView
+        android:id="@+id/consumptionCity"
+        android:text="City "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="26sp"
+        android:paddingTop="13dp"
+        android:paddingLeft="30dp"
+        android:layout_below="@id/consumptionRout"/>
+    <TextView
+        android:id="@+id/consumptionWebasto"
+        android:text="webasto "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="26sp"
+        android:paddingTop="13dp"
+        android:paddingLeft="30dp"
+        android:layout_below="@id/consumptionCity"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/totalConsumption"
+        android:text="Общий расход "
+        android:background="#00FF7F"
+        android:textColor="#006400"
+        android:textSize="26sp"
+        android:layout_below="@id/consumptionWebasto"/>
+    </RelativeLayout>
+<!--<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reportHeader"
+        android:text="Отчёт."/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/distanceByPinsk"
+        android:text="Пробег по Пинску "/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/distanceByRout"
+        android:text="Пробег по трассе "/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/distanceByCity"
+        android:text=""/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/totalDistance"
+        android:text="Общий пробег "/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/consumptionPinsk"
+        android:text="Расход по Пинску "/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/consumptionRout"
+        android:text="Расход по трассе "/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/consumptionCity"
+        android:text="Расход по городу "/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/consumptionWebasto"
+        android:text="Расход webasto "/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/totalConsumption"
+        android:text="Общий расход "/>
+</LinearLayout>-->

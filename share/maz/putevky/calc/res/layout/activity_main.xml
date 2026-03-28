@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scroll">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/direct"
+                    android:text="Направление "
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="26sp"
+                    android:paddingTop="10dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"/>
+                <EditText
+                    android:id="@+id/etDirect"
+                    android:inputType="text"
+                    android:textSize="26sp"
+                    android:layout_toRightOf="@id/direct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <!-- ================================= -->
+
+                <TextView
+                    android:id="@+id/distanceHeader"
+                    android:text="ПРОБЕГ"
+                    android:textSize="26sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/etDirect"
+                    android:background="#ffffff"
+                    android:textColor="#006400"/>
+
+                <!-- Для ввода пробега по Пинску -->
+                <TextView
+                    android:id="@+id/distanceByPinsk"
+                    android:text="Пинск "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="26sp"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="30dp"
+                    android:layout_below="@id/distanceHeader"/>
+                <EditText
+                    android:id="@+id/etDistanceByPinsk"
+                    android:inputType="number"
+                    android:textSize="26sp"
+                    android:layout_toEndOf="@id/distanceByPinsk"
+                    android:layout_below="@id/distanceHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"/>
+                <!-- ================================= -->
+
+                <!-- Для ввода пробега по трассе -->
+                <TextView
+                    android:id="@+id/distanceByRout"
+                    android:text="трасса "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="26sp"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="30dp"
+                    android:layout_below="@id/distanceByPinsk"/>
+                <EditText
+                    android:id="@+id/etDistanceByRout"
+                    android:inputType="number"
+                    android:textSize="26sp"
+                    android:layout_toEndOf="@id/distanceByRout"
+                    android:layout_below="@id/etDistanceByPinsk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <!-- ================================= -->
+
+                <!-- Для ввода пробега по городу назначения -->
+                <TextView
+                    android:id="@+id/distanceByCity"
+                    android:text="City "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="26sp"
+                    android:paddingTop="13dp"
+                    android:paddingLeft="30dp"
+                    android:layout_below="@id/distanceByRout"/>
+                <EditText
+                    android:id="@+id/etDistanceByCity"
+                    android:inputType="number"
+                    android:textSize="26sp"
+                    android:layout_toEndOf="@id/distanceByCity"
+                    android:layout_below="@id/etDistanceByRout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <!-- ================================= -->
+
+                <RadioGroup
+                    android:id="@+id/popularChoice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_below="@id/etDistanceByCity">
+                    <RadioButton
+                        android:id="@+id/pop100k_300k"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:text="население 100-300 тыс."/>
+                    <RadioButton
+                        android:id="@+id/pop300k_1m"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:text="население 300тыс-1млн."/>
+                    <RadioButton
+                        android:id="@+id/pop1m_3m"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:text="население 1-3 млн."/>
+                </RadioGroup>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/webasto"
+                    android:text="Работа webasto"
+                    android:textSize="26sp"
+                    android:paddingTop="13dp"
+                    android:layout_below="@+id/popularChoice"/>
+                <EditText
+                    android:id="@+id/etWebasto"
+                    android:inputType="number"
+                    android:textSize="26sp"
+                    android:layout_toEndOf="@id/webasto"
+                    android:layout_below="@id/popularChoice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/createReport"
+                    android:textSize="25sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/etWebasto"
+                    android:layout_marginTop="50dp"
+                    android:background="#00FF7F"
+                    android:textColor="#006400"
+                    android:layout_alignParentRight="true"
+                    android:text="Создать отчет"
+                    android:onClick="onClick"/>
+                </RelativeLayout>
+            </ScrollView>
+    </LinearLayout>
