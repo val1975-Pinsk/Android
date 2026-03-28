@@ -34,35 +34,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Log.d(TAG, "onCreate");
-        EditText etMerchandise = (EditText)findViewById(R.id.etMerchandise);
-        /*
-            Нажата кнопка "Done" или "Enter" на клавиатуре.
-        */
-        etMerchandise.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    // do your stuff here
-                    Log.d(TAG, "IME_ACTION_DONE");
-                    // v.setVisibility(View.INVISIBLE);
-                    LinearLayout newMerchandise = (LinearLayout) findViewById(R.id.newMerchandise);
-                    newMerchandise.setVisibility(View.GONE);
-                    // setContentView(R.layout.activity_main);
-                    // int size = myShopping.size();
-                    // LinearLayout linLayout = (LinearLayout) findViewById(R.id.linLayout);
-                    // LayoutInflater ltInflater = getLayoutInflater();
-                    // for(int i = 0; i<size; i ++){
-                    //     item = ltInflater.inflate(R.layout.item, linLayout, false);
-                    //     cbName = (CheckBox) item.findViewById(R.id.itemName);
-                    //     cbName.setText(myShopping.get(i));
-                    //     item.getLayoutParams().width = LayoutParams.MATCH_PARENT;
-                    //     linLayout.addView(item);
-                    // }
-                }
-                return false;
-            }
-        });
+
     }
 
     public void onClick(View view) {
@@ -75,13 +47,29 @@ public class MainActivity extends Activity {
             /*
              * Нажата кнопка "Добавить"
              */
+            Log.d(TAG, "ADD button");
             LinearLayout newMerchandise = (LinearLayout) findViewById(R.id.newMerchandise);
             newMerchandise.setVisibility(View.VISIBLE);
             newMerchandise.requestFocus();
+            etMerchandise.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            /*
+                Нажата кнопка "Done" или "Enter" на клавиатуре.
+            */
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    Log.d(TAG, "IME_ACTION_DONE");
+                    LinearLayout newMerchandise = (LinearLayout) findViewById(R.id.newMerchandise);
+                    newMerchandise.setVisibility(View.GONE);
+                }
+                return false;
+            }
+        });
         }else if(view.getId() == R.id.ok){
             /*
              * Нажата кнопка "Ok"
              */
+            Log.d(TAG, "OK button");
             LinearLayout linLayout = (LinearLayout) findViewById(R.id.linLayout);
             LayoutInflater ltInflater = getLayoutInflater();
             merchandise = etMerchandise.getText().toString();
@@ -98,23 +86,10 @@ public class MainActivity extends Activity {
             toast.show();
         }else{
             /*
-             * Нажата кнопка "Очистить+"
+             * Нажата кнопка "Очистить"
              */
-            // Log.d(TAG, "onClick");
-            // // Log.d(TAG, "saved: "+saved);
-            // Intent intent = new Intent(this, Shopping.class);
-            // int size = myShopping.size();
-            // Log.d(TAG, "size: " + size);
-            // intent.putExtra("size", size);
-            // for(int i = 0; i < size; i++){
-            //     intent.putExtra("merchandise_" + i, myShopping.get(i));
-            //     Log.d(TAG, "merchandise_" + i + ": " + myShopping.get(i));
-            // }
-            // if(!saved){
-            //     saved = saveText(myShopping);
-            // }
-            // saveText(myShopping);
-            // startActivity(intent);
+            Log.d(TAG, "CLEAR button");
+            setContentView(R.layout.activity_main);
         }
 
     }
