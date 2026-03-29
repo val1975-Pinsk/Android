@@ -77,17 +77,10 @@ public class MainActivity extends Activity {
              * Нажата кнопка "Ok"
              */
             Log.d(TAG, "OK button");
-            // LinearLayout linLayout = (LinearLayout) findViewById(R.id.linLayout);
-            // LayoutInflater ltInflater = getLayoutInflater();
             merchandise = etMerchandise.getText().toString();
             myShopping.add(merchandise);
             etMerchandise.setText("");
             Log.d(TAG, "merchandise: " + merchandise);
-            // item = ltInflater.inflate(R.layout.item, linLayout, false);
-            // cbName = (CheckBox) item.findViewById(R.id.itemName);
-            // cbName.setText(merchandise);
-            // item.getLayoutParams().width = LayoutParams.MATCH_PARENT;
-            // linLayout.addView(item);
             addItemToScreen(merchandise);
             Toast toast = Toast.makeText(this, "Добавлено в список", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.TOP, 0, 0);
@@ -112,7 +105,6 @@ public class MainActivity extends Activity {
         super.onDestroy();
         Log.d(TAG, "onDestroy");
         Log.d(TAG, "size: " + myShopping.size());
-        // deleteFile(FILE_NAME);
         if(myShopping.size() !=0 ){
             saveListMerchandise(myShopping);
         }
@@ -129,16 +121,6 @@ public class MainActivity extends Activity {
     protected void onStart(){
         super.onStart();
         Log.d(TAG, "onStart");
-        // Log.d(TAG, "size: " + myShopping.size());
-        // myShopping = ReadShoppingList(FILE_NAME);
-        // int size = myShopping.size();
-        // if(size != 0){
-        //     for(int i =0; i < size; i++){
-        //         addItemToScreen(myShopping.get(i));
-        //     }
-        // }
-        // if(!saved) return;
-
     }
 
     @Override
@@ -224,9 +206,7 @@ public class MainActivity extends Activity {
             String[] words = text.split(":");
             for(String word : words){
                 arrList.add(word);
-                // addItemToScreen(word);
             }
-        //     // Log.d(TAG, "openText: " + text);
         }
         catch(IOException ex) {
 
