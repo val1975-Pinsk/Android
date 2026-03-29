@@ -23,8 +23,11 @@ import java.io.*;
 public class MainActivity extends Activity {
 
     ArrayList<String> myShopping = new ArrayList<String>(20);
+    ArrayList<String> idList = new ArrayList<String>(11);
+    // String[] idNames = {"bread", "butter", "cheese", "considered", "cottageСheese", "kefir", "milk", "sugar", "vegOil", "wheatFlour", "yogurt"};
     private final static String TAG = "MainActivity";
     private final static String FILE_NAME = "Merchandises.txt";
+    private final static String FILE_NAME_ID = "Id.txt";
     boolean saved = false;
     View item;
     String merchandise;
@@ -32,17 +35,50 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
+        // deleteFile(FILE_NAME_ID);
         setContentView(R.layout.activity_main);
         myShopping = ReadShoppingList(FILE_NAME);
         int size = myShopping.size();
         if(size != 0){
-            for(int i =0; i < size; i++){
-                addItemToScreen(myShopping.get(i));
+            for(int i = 0; i < size; i++){
+                addItemToScreen(myShopping.get(i), i);
             }
         }
-
+        idList = ReadShoppingList(FILE_NAME_ID);
+        size = idList.size();
+        String id;
+        CheckBox cb;
+        int idInt, resID;
+        if(size != 0){
+            for(int i = 0; i < size; i++){
+                id = idList.get(i);
+                Log.d(TAG, "id: " + id);
+                idInt = Integer.valueOf(id);
+                cb = (CheckBox) findViewById(idInt);
+                cb.setChecked(true);
+            }
+        }
     }
+
+    public void onCheckboxClicked(View view){
+        int id = view.getId();
+        // String idStr = String.valueOf(id);
+        // Toast toast = Toast.makeText(this, idStr, Toast.LENGTH_SHORT);
+        // toast.setGravity(Gravity.TOP, 0, 0);
+        // toast.show();
+        Log.d(TAG, "onCheckboxClicked");
+        Log.d(TAG, "id: " + id);
+        CheckBox checkBox = (CheckBox) view;
+        if(checkBox.isChecked()){
+            idList.add(String.valueOf(id));
+            Log.d(TAG, "string id: " + String.valueOf(id));
+        }else{
+            idList.remove(String.valueOf(id));
+        }
+    }
+
 
     public void onClick(View view) {
         Log.d(TAG, "onClick");
@@ -81,7 +117,7 @@ public class MainActivity extends Activity {
             myShopping.add(merchandise);
             etMerchandise.setText("");
             Log.d(TAG, "merchandise: " + merchandise);
-            addItemToScreen(merchandise);
+            addItemToScreen(merchandise, myShopping.size() - 1);
             Toast toast = Toast.makeText(this, "Добавлено в список", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.TOP, 0, 0);
             toast.show();
@@ -92,9 +128,14 @@ public class MainActivity extends Activity {
             Log.d(TAG, "CLEAR button");
             setContentView(R.layout.activity_main);
             deleteFile(FILE_NAME);
+            deleteFile(FILE_NAME_ID);
             int size = myShopping.size();
             for(int i = 0; i < size; i ++){
                 myShopping.remove((size - 1) - i);
+            }
+            size = idList.size();
+            for(int i = 0; i < size; i ++){
+                idList.remove((size - 1) - i);
             }
         }
 
@@ -105,10 +146,13 @@ public class MainActivity extends Activity {
         super.onDestroy();
         Log.d(TAG, "onDestroy");
         Log.d(TAG, "size: " + myShopping.size());
-        if(myShopping.size() !=0 ){
-            saveListMerchandise(myShopping);
+        if(myShopping.size() != 0){
+            saveListMerchandise(FILE_NAME, myShopping);
+            // saveListMerchandise(FILE_NAME_ID, idList);
         }
-
+        if(idList.size() != 0){
+            saveListMerchandise(FILE_NAME_ID, idList);
+        }
     }
 
     @Override
@@ -145,17 +189,17 @@ public class MainActivity extends Activity {
     /*
         Сохраняем данные в файл.
     */
-    public void saveListMerchandise(ArrayList<String> listMerchandise){
+    public void saveListMerchandise(String fileName, ArrayList<String> list){
 
         Log.d(TAG, "saved text");
 
         FileOutputStream fos = null;
-        int size = listMerchandise.size();
+        int size = list.size();
         String str;
         try {
-            fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
+            fos = openFileOutput(fileName, MODE_PRIVATE);
             for(int i =0; i < size; i++){
-                str = listMerchandise.get(i) + ":";
+                str = list.get(i) + ":";
                 fos.write(str.getBytes());
             }
 
@@ -180,12 +224,16 @@ public class MainActivity extends Activity {
     /*
         Добавляем товар на экран.
     */
-    public void addItemToScreen(String merchandise){
+    public void addItemToScreen(String merchandise, int number){
+        String id;
         LinearLayout linLayout = (LinearLayout) findViewById(R.id.linLayout);
         LayoutInflater ltInflater = getLayoutInflater();
         item = ltInflater.inflate(R.layout.item, linLayout, false);
-        cbName = (CheckBox) item.findViewById(R.id.itemName);
+        cbName = (CheckBox) item.findViewById(R.id.cb);
         cbName.setText(merchandise);
+        // cbName.setChecked(true);
+        // id = "cb_" + String.valueOf(number);
+        cbName.setId(number);
         item.getLayoutParams().width = LayoutParams.MATCH_PARENT;
         linLayout.addView(item);
     }
